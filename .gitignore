@@ -3,3 +3,4 @@
 /.htaccess
 /license.txt
 /readme.html
+!/.idea/workspace.xml
