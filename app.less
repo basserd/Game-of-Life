@@ -1,0 +1,172 @@
+html,body{
+  margin:0;
+  padding:0;
+}
+
+.page {
+  min-height: 100vh;
+
+  &_header {
+    display: none;
+    h1 {
+      color: #fff;
+      font-size: 50px;
+      font-weight: 600;
+      font-family: 'Roboto', sans-serif;
+    }
+  }
+
+  &_container {
+    padding: 10px 0;
+    background: #f7f7f7;
+    text-align:center;
+    min-height: 100vh;
+
+    .canvas_count {
+      text-align: center;
+      width: 100%;
+      margin: 0 auto;
+
+      &__generations {
+        margin-top: 20px;
+
+        .container {
+          min-width: 300px;
+          margin: 0 auto;
+          width: auto;
+          display: inline-block;
+          background: #f7f7f7;
+          padding: 10px 20px;
+
+          span {
+            color: #00aeef;
+            font-family: 'Roboto', sans-serif;
+
+            &.text {
+              font-size: 25px;
+              border-bottom: 1px solid #00aeef;
+              display: inline-block;
+              width: auto;
+              padding-bottom: 5px;
+            }
+
+            &.number {
+              display: block;
+              width: 100%;
+              text-align: center;
+              font-size: 40px;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+
+    .canvas_container_outer {
+      margin: 0 auto;
+
+      .canvas_container {
+        width: 100%;
+        display: inline-block;
+        margin: 20px auto 20px auto;
+
+        .vertical_row {
+          width: 100%;
+          float: left;
+
+          .horizontal_block {
+            float: left;
+            margin: -1px;
+            background: #f7f7f7;
+            border: 1px solid #e3d7d7;
+            -webkit-transition: background .3s;
+            -moz-transition: background .3s;
+            -ms-transition: background .3s;
+            -o-transition: background .3s;
+            transition: background .3s;
+            &.alive {
+              background: #00aeef;
+            }
+          }
+        }
+      }
+
+      .canvas_footer {
+        padding-bottom: 50px;
+        display: inline-block;
+        width: 100%;
+
+        .canvas_inputs {
+          float: left;
+          width: 40%;
+          text-align: left;
+
+          &__single {
+            width: 100%;
+            display: block;
+            position: relative;
+
+            label {
+              font-family: 'Roboto', sans-serif;
+              float: left;
+              width: 100%;
+              margin-bottom: 5px;
+              font-size: 13px;
+              font-weight: 600;
+            }
+
+            input {
+              border: none;
+              padding: 8px 10px;
+              width: 100%;
+            }
+          }
+        }
+
+        .canvas_controls {
+          float: right;
+          display: inline-block;
+          width: 60%;
+          margin-top: 20px;
+
+          &__single {
+            float: right;
+            margin-bottom: 20px;
+
+            &:not(:first-child){
+              margin-right: 20px;
+            }
+
+            button {
+              border: 0;
+              padding: 8px 17px;
+              background: #00aeef;
+              border-radius: 3px;
+              color: #fff;
+              -webkit-transition: background .3s;
+              -moz-transition: background .3s;
+              -ms-transition: background .3s;
+              -o-transition: background .3s;
+              transition: background .3s;
+
+              &:hover {
+                background: #005778;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+
+
+  }
+
+  &_footer {
+
+  }
+}
+
+

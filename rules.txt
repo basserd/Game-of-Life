@@ -1,0 +1,28 @@
+    Cell rules
+
+1.  Alive cell:
+    Whenever a cell has less than 2 alive neighbours.
+    (die)
+
+2.  Alive cell:
+    Whenever a cell has 2 or 3 neighbours.
+    (stay alive): at least live till the next generation.
+
+3.  Alive cell:
+    Whenever a cell has more than 3 neighbours.
+    (die)
+
+4.  Dead cell:
+    Whenever a DEAD cell has 3 neighbours it will be born
+    (spawn)
+
+
+
+    Particles
+
+1.  Gliders
+
+
+
+A cell can be alive or dead. Usually whenever a cell is painted its indicated as alive.
+
