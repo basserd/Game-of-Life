@@ -82,9 +82,10 @@ body {
   background: #00aeef;
 }
 .page_container .canvas_container_outer .canvas_footer {
-  padding-bottom: 50px;
   display: inline-block;
-  width: 100%;
+  width: calc( 100% - 40px );
+  background: #dcd2d2;
+  padding: 20px;
 }
 .page_container .canvas_container_outer .canvas_footer .canvas_inputs {
   float: left;
@@ -107,10 +108,24 @@ body {
   font-size: 13px;
   font-weight: 600;
 }
-.page_container .canvas_container_outer .canvas_footer .canvas_inputs__single input {
-  border: none;
+.page_container .canvas_container_outer .canvas_footer .canvas_inputs__single input,
+.page_container .canvas_container_outer .canvas_footer .canvas_inputs__single select {
   padding: 8px 10px;
   width: 100%;
+  border: none;
+  color: #000;
+  background: #fff;
+}
+.page_container .canvas_container_outer .canvas_footer .canvas_inputs__single .description {
+  padding-top: 0;
+  margin-top: 5px;
+  font-size: 11px;
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+}
+.page_container .canvas_container_outer .canvas_footer .canvas_inputs__single .description.warning {
+  color: red;
+  font-weight: 700;
 }
 .page_container .canvas_container_outer .canvas_footer .canvas_controls {
   float: right;

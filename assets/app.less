@@ -92,9 +92,10 @@ html,body{
       }
 
       .canvas_footer {
-        padding-bottom: 50px;
         display: inline-block;
-        width: 100%;
+        width: ~"calc( 100% - 40px )";
+        background: #dcd2d2;
+        padding: 20px;
 
         .canvas_inputs {
           float: left;
@@ -119,10 +120,25 @@ html,body{
               font-weight: 600;
             }
 
-            input {
-              border: none;
+            input, select {
               padding: 8px 10px;
               width: 100%;
+              border: none;
+              color: #000;
+              background: #fff;
+            }
+
+            .description {
+              padding-top: 0;
+              margin-top: 5px;
+              font-size: 11px;
+              font-family: 'Roboto', sans-serif;
+              color: #000;
+              
+              &.warning {
+                color: red;
+                font-weight: 700;
+              }
             }
           }
         }

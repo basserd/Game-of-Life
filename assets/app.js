@@ -64,7 +64,7 @@
                 end_canvas_interval();
             }
 
-            set_random_horizontal_alive_blocks();
+            set_horizontal_alive_blocks();
         }
     }
 
@@ -104,7 +104,7 @@
         remove_alive_horizontal_block();
     }
 
-    ).on( 'keyup, change', 'input.canvas_input', function() {
+    ).on( 'change', '.canvas_input', function() {
        var this_element = $( this );
 
        // @ToDo: make this more variable.
@@ -112,7 +112,6 @@
            this_element.length &&
            this_element.attr( 'name' ) != ''
        ) {
-
            switch( this_element.attr( 'name' ) ) {
                case 'canvas_amount_per_5':
                    if (
@@ -137,6 +136,17 @@
                            '<style id="#horizontal_block_single_style">.vertical_row .horizontal_block.alive{background:#'+this_element.val()+'!important;}</style>'
                        )
                    );
+
+                   break;
+
+               case 'canvas_defined_pattern':
+
+                   if ( this_element.val() != '' ) {
+
+                       if ( confirm( "Apply pattern :)") ) {
+                           set_horizontal_alive_blocks( this_element.val() );
+                       }
+                   }
 
                    break;
            }
@@ -201,7 +211,7 @@
         clearInterval(w_canvas_interval);
     }
 
-    function set_random_horizontal_alive_blocks() {
+    function set_horizontal_alive_blocks( defined_pattern_blocks ) {
         var horizontal_blocks = get_blocks();
 
         // @ToDo:(question:in terms of warnings of the element
@@ -211,14 +221,40 @@
         if ( existing_horizontal_blocks.length )
             existing_horizontal_blocks.removeClass( 'alive' );
 
-        // @ToDo: Should be from some soft of variable
-        //        which should be from a form on the page.
-        var $horizontal_amount = 200;
-
         // Adding the class "alive" to make them appear colored
         // (and so making them active).
-        var random_defined_alive = $( get_random_from_array( horizontal_blocks, $horizontal_amount )
-        ).addClass( 'alive' );
+        var defined_alive = [];
+
+        // Checking for defined pattern
+        if (
+            defined_pattern_blocks &&
+            typeof window.defined_patterns != 'undefined' &&
+            typeof window.defined_patterns[defined_pattern_blocks] != 'undefined' &&
+            typeof window.defined_patterns[defined_pattern_blocks]['pattern'] != 'undefined'
+        ) {
+            var amount = 0;
+
+            for ( var key_row in window.defined_patterns[defined_pattern_blocks]['pattern'] ) {
+                var obj_row = window.defined_patterns[defined_pattern_blocks]['pattern'][key_row];
+
+                for ( var key_block in obj_row ) {
+
+                    var obj_block = obj_row[ key_block ];
+
+                    defined_alive.push( $( '.horizontal_block[data-vertical-horizontal="'+key_row+'_'+obj_block+'"]').addClass( 'alive' ) );
+
+                    amount++;
+                }
+            }
+        } else {
+
+            // @ToDo: Should be from some soft of variable
+            //        which should be from a form on the page.
+            var $horizontal_amount = 200;
+
+            defined_alive = $( get_random_from_array( horizontal_blocks, $horizontal_amount )
+            ).addClass( 'alive' );
+        }
 
         // Checking for the given possible neighbors/blocks.
         var possible_neighbors =
@@ -234,13 +270,13 @@
                     $( '.horizontal_block[data-verical-horizontal="'+index+'"]' ).removeClass('alive');
                 } );
 
-                // Resetting the active blocks since new random blocks
+                // Resetting the active blocks since new blocks
                 // need to be activated.
                 w_alive_blocks = [];
             }
 
-            // Looping over the amount of random defined blocks.
-            $.each( random_defined_alive, function(index, element) {
+            // Looping over the amount of defined blocks.
+            $.each( defined_alive, function(index, element) {
 
                 var combination_v_h = $(element).data('vertical') + '_' + $(element).data('horizontal');
 
@@ -440,7 +476,7 @@
                 $( '.horizontal_block[data-vertical-horizontal="'+key_alive+'"]' ).removeClass('alive');
             }
 
-            // Resetting the active blocks since new random blocks
+            // Resetting the active blocks since new blocks
             // need to be activated.
             w_alive_blocks = [];
 

@@ -110,17 +110,18 @@ function bvd_gol_generate_canvas_display($v_blocks = 0, $h_blocks = 0, $height =
     $block_width                = 100 / $h_blocks;
     $block_height               = 100 / $v_blocks;
 
+    $canvas_defined_patterns = bvd_gol_defined_patterns();
 
     $html_canvas = '<style id="horizontal_block_style">.vertical_row .horizontal_block{width:'.$block_width.'%!important;height:'.$block_height.'%!important;}</style>';
 
     $html_canvas .= '<div class="canvas_container_outer" style="width:'.$width.'px;">';
     $html_canvas .=
         '<div 
-                            class="canvas_container" 
-                            data-v_blocks="'.$v_blocks.'"
-                            data-h_blocks="'.$h_blocks.'"
-                        >
-                    ';
+            class="canvas_container" 
+            data-v_blocks="'.$v_blocks.'"
+            data-h_blocks="'.$h_blocks.'"
+        >
+    ';
 
     // Looping over the amount of vertical/horizontal blocks.
     // in order to create the necessary html structure.
@@ -138,13 +139,13 @@ function bvd_gol_generate_canvas_display($v_blocks = 0, $h_blocks = 0, $height =
             }
 
             $html_canvas .= '
-                            <div 
-                                class="horizontal_block" 
-                                data-horizontal="'.$h_i.'" 
-                                data-vertical="'.$v_i.'"
-                                data-vertical-horizontal="'.$v_i.'_'.$h_i.'"
-                            ></div>
-                        ';
+                <div 
+                    class="horizontal_block" 
+                    data-horizontal="'.$h_i.'" 
+                    data-vertical="'.$v_i.'"
+                    data-vertical-horizontal="'.$v_i.'_'.$h_i.'"
+                ></div>
+            ';
         }
 
         $html_canvas .= '</div>';
@@ -160,11 +161,22 @@ function bvd_gol_generate_canvas_display($v_blocks = 0, $h_blocks = 0, $height =
 
     $html_canvas .= '</div>';
 
-    $html_canvas .= '
-                    <script type="text/javascript">
-                        var possible_neighbors = '.json_encode($canvas_possible_neighbors).';
-                    </script>
-                ';
+    if ( ! empty ( $canvas_possible_neighbors ) ) {
+        $html_canvas .= '
+            <script type="text/javascript">
+                var possible_neighbors = '.json_encode($canvas_possible_neighbors).';
+            </script>
+        ';
+    }
+
+    if ( ! empty (  $canvas_defined_patterns ) ) {
+        $html_canvas .= '
+            <script type="text/javascript">
+                var defined_patterns = '.json_encode($canvas_defined_patterns).';
+            </script>
+        ';
+    }
+
 
     return $html_canvas;
 }
@@ -208,16 +220,32 @@ function bvd_gol_generate_input_display(){
 
     ob_start();
 
+    $canvas_defined_patterns = bvd_gol_defined_patterns();
+
     print '<div class="canvas_inputs">';
         print '<div class="canvas_inputs__single">';
             print '<label>Actions per 5 sec</label>';
-            print '<input type="number" class="canvas_input" name="canvas_amount_per_5">';
+            print '<input type="number" class="canvas_input" placeholder="number.." name="canvas_amount_per_5">';
         print '</div>';
 
         print '<div class="canvas_inputs__single">';
             print '<label>Background color alive block</label>';
             print '<input type="text" class="jscolor canvas_input color_picker" name="canvas_block_color">';
         print '</div>';
+
+        if ( ! empty ( $canvas_defined_patterns ) ) {
+            print '<div class="canvas_inputs__single">';
+                print '<label>Predefined patterns</label>';
+                print '<select class="canvas_input" name="canvas_defined_pattern">';
+                    print '<option value="">Select pattern</option>';
+
+                    foreach( $canvas_defined_patterns as $pattern ) {
+                        print '<option value="'.$pattern['slug'].'">'.$pattern['name'].'</option>';
+                    }
+                print '</select>';
+                print '<p class="description warning">Changing this field will reset the current canvas!</p>';
+            print '</div>';
+        }
     print '</div>';
 
     return ob_get_clean();
@@ -246,6 +274,30 @@ function bvd_gol_generate_count_display() {
  */
 function bvd_gol_is_positive_int( $int ){
     return is_int( $int ) && $int > 0 ? $int : false;
+}
+
+function bvd_gol_defined_patterns() {
+    $patterns = [
+        'glider_gun' => [
+            'name' => 'Glider gun',
+            'slug' => 'glider_gun',
+            'width' => 36,
+            'height' => 9,
+            'pattern' => [
+                1 => [ 26 ],
+                2 => [ 24, 26 ],
+                3 => [ 14, 15, 22, 23, 36, 37 ],
+                4 => [ 13, 17, 22, 23, 36, 37 ],
+                5 => [ 2, 3, 12, 18, 22, 23 ],
+                6 => [ 2, 3, 12, 16, 18, 19, 24, 26 ],
+                7 => [ 12, 18, 26 ],
+                8 => [ 13, 17 ],
+                9 => [ 14, 15 ]
+            ]
+        ]
+    ];
+
+    return $patterns;
 }
 
 /**
