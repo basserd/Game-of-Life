@@ -96,6 +96,9 @@ body {
   display: block;
   position: relative;
 }
+.page_container .canvas_container_outer .canvas_footer .canvas_inputs__single:not(:first-child) {
+  margin-top: 15px;
+}
 .page_container .canvas_container_outer .canvas_footer .canvas_inputs__single label {
   font-family: 'Roboto', sans-serif;
   float: left;
