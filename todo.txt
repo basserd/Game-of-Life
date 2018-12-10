@@ -1,0 +1,21 @@
+- draggable alive/dead toggle.
+
+- custom colors.
+
+- custom amount blocks.
+
+- memory of patterns.
+    - in cookies.
+    - in database.
+
+- memory of settings.
+    - in cookies.
+    - in database.
+
+- redesign control buttons.
+
+- enable -1x = *max*x && *max + 1*x = 1x
+  enable -1y = *max*y && *max + 1*y = 1y
+    Basically
+
+

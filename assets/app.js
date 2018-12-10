@@ -27,6 +27,14 @@
                 canvas_responsive_reset( canvas_container );
             }
         }
+
+        var color_picker_inputs = $( '.color_picker' );
+
+        if ( color_picker_inputs.length ) {
+            $.each( color_picker_inputs, function(index,data) {
+
+            } );
+        }
     } );
 
     /* -- .on handlers. -- */
@@ -96,7 +104,7 @@
         remove_alive_horizontal_block();
     }
 
-    ).on( 'keyup', 'input.canvas_input', function() {
+    ).on( 'keyup, change', 'input.canvas_input', function() {
        var this_element = $( this );
 
        // @ToDo: make this more variable.
@@ -116,9 +124,19 @@
                        end_canvas_interval();
 
                        start_canvas_interval();
-
-                       console.log( 'case 31231' );
                    }
+
+                   break;
+
+               case 'canvas_block_color':
+
+                   $( '#horizontal_block_single_style' ).remove();
+
+                   $( '.page_container' ).append(
+                       $(
+                           '<style id="#horizontal_block_single_style">.vertical_row .horizontal_block.alive{background:#'+this_element.val()+'!important;}</style>'
+                       )
+                   );
 
                    break;
            }
@@ -429,14 +447,12 @@
             if(typeof w_canvas_count != 'undefined') {
                 w_canvas_count=0;
 
-                console.log( 'remove: ' );
                 canvas_set_current_count();
             }
         }
     }
 
     function canvas_set_current_count() {
-        console.log( w_canvas_amount_per_5 );
 
         var canvas_count_container = $( '.canvas_count__generations' );
 
@@ -476,6 +492,4 @@
             }
         }
     }
-
-
 })( jQuery );

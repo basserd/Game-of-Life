@@ -209,10 +209,15 @@ function bvd_gol_generate_input_display(){
     ob_start();
 
     print '<div class="canvas_inputs">';
-    print '<div class="canvas_inputs__single">';
-    print '<label>Actions per 5 sec</label>';
-    print '<input type="number" class="canvas_input" name="canvas_amount_per_5">';
-    print '</div>';
+        print '<div class="canvas_inputs__single">';
+            print '<label>Actions per 5 sec</label>';
+            print '<input type="number" class="canvas_input" name="canvas_amount_per_5">';
+        print '</div>';
+
+        print '<div class="canvas_inputs__single">';
+            print '<label>Background color alive block</label>';
+            print '<input type="text" class="jscolor canvas_input color_picker" name="canvas_block_color">';
+        print '</div>';
     print '</div>';
 
     return ob_get_clean();

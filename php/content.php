@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="assets/app.min.css" type="text/css"/>
+    <link rel="stylesheet" href="assets/app.css" type="text/css"/>
     <script src="assets/jquery.min.js" type="text/javascript"></script>
     <title>Game of Life</title>
 </head>
@@ -20,5 +20,6 @@
 </body>
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-<script src="assets/app.min.js" type="text/javascript"></script>
+<script src="assets/jscolor.js" type="text/javascript"></script>
+<script src="assets/app.js" type="text/javascript"></script>
 </html>
