@@ -1,7 +1,3 @@
-
-
-
-
 (function( $ ) {
 
     /* -- global variables -- */
@@ -119,11 +115,9 @@
 
                        end_canvas_interval();
 
-                       setTimeout(
-                           function(){
-                               start_canvas_interval();
-                           },
-                       50);
+                       start_canvas_interval();
+
+                       console.log( 'case 31231' );
                    }
 
                    break;
@@ -173,10 +167,6 @@
     function start_canvas_interval() {
 
         if (!w_canvas_paused){
-            console.log( w_canvas_amount_per_5 );
-            console.log( 5000 / w_canvas_amount_per_5 );
-            console.log( ' ' );
-
             w_canvas_interval = setInterval( canvas_interval, ( 5000 / w_canvas_amount_per_5 ) );
         }
     }
@@ -439,12 +429,15 @@
             if(typeof w_canvas_count != 'undefined') {
                 w_canvas_count=0;
 
+                console.log( 'remove: ' );
                 canvas_set_current_count();
             }
         }
     }
 
     function canvas_set_current_count() {
+        console.log( w_canvas_amount_per_5 );
+
         var canvas_count_container = $( '.canvas_count__generations' );
 
         if ( canvas_count_container.length ) {
