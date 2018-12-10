@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="vandijkdevelopment" compareModeInSync="TIMESTAMP">
+  <component name="PublishConfigData">
     <serverData>
       <paths name="Archipel LIVE">
         <serverdata>
@@ -579,7 +579,7 @@
       <paths name="vandijkdevelopment">
         <serverdata>
           <mappings>
-            <mapping deploy="/subdomains/gol" local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
