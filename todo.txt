@@ -4,6 +4,8 @@
 
 - custom amount blocks.
 
+- predefined patterns.
+
 - memory of patterns.
     - in cookies.
     - in database.

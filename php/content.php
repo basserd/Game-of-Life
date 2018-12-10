@@ -13,7 +13,7 @@
     <div class="page_container">
         <?php
         print bvd_gol_generate_count_display();
-        print bvd_gol_generate_canvas_display(20,20,650,650);
+        print bvd_gol_generate_canvas_display(40,40,650,650);
         ?>
     </div>
 </div>
